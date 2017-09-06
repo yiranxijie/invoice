@@ -1,0 +1,497 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<base target="_self">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+<meta name="viewport" content="width=device-width" />
+<meta name="keywords" content="" />
+<meta name="description" content="A jQuery plugin to add qr codes to your pages" />
+<title>发票查验平台</title>
+<script language="javascript">
+  document.write("<l" + "ink rel='stylesheet' type='text/css' href='../css/common.css' />");
+  document.write("<s"+"cript charset='utf-8' type='text/javascript' src='../js/jquery-1.10.2.min.js'></scr"+"ipt>");
+  document.write("<s"+"cript charset='utf-8' type='text/javascript' src='../js/jquery.PrintArea.js'></scr"+"ipt>");
+  document.write("<s"+"cript charset='utf-8' type='text/javascript' src='../js/result.js'></scr"+"ipt>");
+</script>
+<style type="text/css" media="screen">
+	.shuiyin {background:url(images/shuiyin.png) repeat; width:100%; position:absolute;left:0px; top:0px;z-index:1; }
+</style>
+<style type="text/css" media="print">
+	.shuiyin { width:100%; position:absolute;left:0px; top:0px;z-index:-1; }
+</style>
+</head>
+
+<body >
+<script>
+var xiaoji1 = 0.0;
+var xiaoji2 = 0.0;
+var zongji1 = 0.0;
+var zongji2 = 0.0;
+
+</script> 
+
+<!--content begin-->
+<div id="content" class="clearfix">
+<a href="#" id="dialogclose">&times;</a>
+  
+  <div id="cms_r">
+    <div class="title">发票查验明细</div>
+    <div class="cms_r_main">
+      <div class="chayan_div">
+      <div id="print_area" class="printdiv" >
+        <table  border="1" class="comm_table2" width="100%" >
+          <tr>
+            <td colspan="4" style="background-color:#2498ef;color:#fff; "><span id="cycs">查验次数：第1次</span>
+            <span style="padding-left:50px;" id="cysj">查验时间：2015-07-08 09:37:22</span>
+            <span style="float:right">
+            <button id="printfp" class="white_button" style="position:relative!important;z-index:100" onmousemove="this.className='green_button';" onmouseout="this.className='white_button';">打印</button>
+			<button id="closebt" class="white_button" style="position:relative!important;z-index:100" onmousemove="this.className='green_button';" onmouseout="this.className='white_button';" onclick="scanAllUser()">关闭</button></span>
+            </td>
+          </tr>
+        </table>
+        <!--原始信息 <a href="#" id="dialog-close" style="position: absolute; top: 0; right: 4px; font-size: 20px; color: #000; text-decoration: none; outline: none;">&times;</a>-->
+      
+        
+          <div id="tabPage2" >
+            <div id="tabPage-zzszyfp">
+              <h1 id="fpcc_zp" style="color:#574B9D;padding:5px 0px 5px 0px; text-align:center;"><strong>四川增值税专用发票</strong></h1>
+              <table border="0" cellpadding="0" cellspacing="0" style="width:100%" >
+                <tr height="30">                 
+                  <td class="align_left">发票代码：<span class="content_td_blue" id="fpdm_zp"></span></td>
+                  <td>&nbsp;</td>
+                  <td class="align_left">发票号码：<span class="content_td_blue" id="fphm_zp"></span></td>
+                  <td>&nbsp;</td>
+                  <td class="align_left">开票日期：<span class="content_td_blue" id="kprq_zp"></span></td>
+                  <td>&nbsp;</td>
+                  <td class="align_left">校验码：<span class="content_td_blue" id="jym_zp"></span></td>
+                  <td>&nbsp;</td>                
+                  <td class="align_left" id="jqxx_zp" style="display:none">机器编号：<span class="content_td_blue" id="jqbh_zp"></span></td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table>
+              <table style="width:100%" border="0" cellspacing="0" cellpadding="0" class="fppy_table">
+              <tr>
+                <td rowspan="4" class="align_center" width="20"><p>购</p>
+                <p>买</p>
+                <p>方</p></td>
+                <td class="align_left borderNo" width="105">名称：</td>
+                <td nowrap class="align_left borderNo bgcolorWhite"><span class="content_td_blue" id="gfmc_zp"></span></td>
+
+                <td rowspan="4" class="align_center" width="20">
+                <p>密</p>
+                <p>码</p>
+                <p>区</p></td>
+                <td id="password_zp" rowspan="4" nowrap class="align_left " width="350">&nbsp;</td> 
+                </tr>
+                <tr >
+                  <td class="align_left borderNo">纳税人识别号：</td>
+                  <td  nowrap class="align_left borderNo"><span class="content_td_blue" id="gfsbh_zp"></span></td>
+                </tr>
+                <tr>
+                  <td class="align_left borderNo" valign="top">地址、电话：</td>
+                  <td  class="align_left borderNo" valign="top"><span class="content_td_blue" id="gfdzdh_zp"> </span></td>
+                </tr>
+                <tr>
+                  <td class="align_left borderNo" valign="top">开户行及账号：</td>
+                  <td  class="align_left borderNo" valign="top"><span class="content_td_blue" id="gfyhzh_zp"></span></td>
+
+                </tr>
+                
+                <!--表头-->
+                <tr>
+                  <td colspan="5" ><table cellspacing="0" cellpadding="0" style="width:100%;" class="fppy_table_box">
+                    <tr id="tab_head_zp">
+                      <td class="align_center borderRight" width="30%">货物或应税劳务名称</td>
+                      <td class="align_center borderRight" width="10%">规格型号</td>
+                      <td class="align_center borderRight" width="5%">单位</td>
+                      <td class="align_center borderRight" width="10%">数量</td>
+                      <td class="align_center borderRight" width="10%">单价</td>
+                      <td class="align_center borderRight" width="15%">金额</td>
+                      <td class="align_center borderRight" width="5%">税率</td>
+                      <td class="align_center" width="15%">税额</td>
+                    </tr>
+                    <tr >
+                      <td class="align_center borderRight">合计</td>
+                      <td class="align_center borderRight">&nbsp;</td>
+                      <td class="align_center borderRight">&nbsp;</td>
+                      <td class="align_center borderRight">&nbsp;</td>
+                      <td class="align_center borderRight">&nbsp;</td>
+                      <td class="align_right borderRight"><span class="content_td_blue" id="je_zp"></span></td>
+                      <td class="align_center borderRight">&nbsp;</td>
+                      <td class="align_right"><span class="content_td_blue" id="se_zp"></span></td>
+                    </tr>
+                    <tr >
+                      <td class="align_center borderRight borderTop" >价税合计（大写）</td>
+                      <td colspan="4" class="align_left borderTop" ><span class="content_td_blue" id="jshjdx_zp"></span></td>
+					  <td colspan="3" class="align_left borderTop" ><span style="padding:0 20px;">（小写）</span><span class="content_td_blue" id="jshjxx_zp"></span></td>
+                    </tr>
+                  </table></td>
+                </tr>
+                <!--表头结束-->
+                <tr>
+                  <td rowspan="4" class="align_center"><p>销</p>
+                  <p>售</p>
+                  <p>方</p></td>
+                  <td class="align_left borderNo">名称：</td>
+                  <td class="align_left borderNo"><span class="content_td_blue" id="xfmc_zp"></span></td>
+                  <td rowspan="4" class="align_center" width="20" ><p>备</p>
+                  <p>注</p></td>
+                  <td rowspan="4" class="align_left content_td_blue" width="350" id="bz_zp" valign="top">&nbsp;</td>
+                </tr>
+                <tr >
+                  <td class="align_left borderNo">纳税人识别号：</td>
+                  <td class="align_left borderNo"><span class="content_td_blue" id="xfsbh_zp"></span></td>
+                </tr>
+                <tr>
+                  <td class="align_left borderNo">地址、电话：</td>
+                  <td class="align_left borderNo"><span class="content_td_blue" id="xfdzdh_zp"></span></td>
+                </tr>
+                <tr>
+                  <td class="align_left borderNo">开户行及账号：</td>
+                  <td class="align_left borderNo"><span class="content_td_blue" id="xfyhzh_zp"></span></td>
+                </tr>
+              </table>
+              
+            </div>
+          </div>
+      <!--原始信息  end-->
+        <div id="icon_zf" style="position:absolute;top:0px;left:0px;display:none;"></div>
+      </div>
+
+         <div style="padding:30px 35px 0px 0px; color:#da534f; font-size:14px; line-height:25px;">
+          <strong>特别提示：</strong>
+            <br />&raquo;&nbsp;&nbsp;本平台仅提供所查询发票票面信息的查验结果。
+            <br />&raquo;&nbsp;&nbsp;若发现发票查验结果与实际交易不符，任何单位或个人有权拒收并向当地税务机关举报。
+        </div>
+        
+      </div>
+      
+      <!-- <div class="comm_btn_div clearfix"> <button class="blue_button" onmousemove="this.className='green_button';" onmouseout="this.className='blue_button';" onclick="close_window()">返回</button></div> -->
+      
+    </div>
+  </div>
+
+</div>
+<!--content end-->
+
+<script type="text/javascript">
+
+var browser = sessionStorage["browser"];
+var data ;
+var sechw;
+var rule;
+if (browser == "edge") {
+	var edgedata = sessionStorage["result"];
+	 data = JSON.parse(edgedata);
+} else {	
+    data = window.dialogArguments;
+	if (data) {
+		rule = sessionStorage["rule"];
+	} else {
+		data = sessionStorage["result"];
+		data = JSON.parse(data);
+	}
+}
+if (browser == "ie8") {
+	$('#closebt').hide();
+}
+	var tempno = data.template;
+	var fplx, hwxxs, fpxxs;
+
+	if (tempno == 0) {
+		fplx=data.fplx;
+		hwxxs=data.hwxx;  
+		fpxxs=data.fpxx;
+	} else if (tempno == 1) {
+		fplx=data.f3ld;
+		hwxxs=data.fdzx;  
+		fpxxs=data.h2gx;
+	} else if (tempno == 2) {
+		fplx=data.a3b0;
+		hwxxs=data.eb2a;  
+		fpxxs=data.f8d7;
+	} else if (tempno == 3) {
+		fplx=data.c342;
+		hwxxs=data.dbd2;  
+		fpxxs=data.d64b;
+	} else if (tempno == 4) {
+		fplx=data.af0b;
+		hwxxs=data.c32a;  
+		fpxxs=data.a22a;
+	} else if (tempno == 5) {
+		fplx=data.ecae;
+		hwxxs=data.c3c0;  
+		fpxxs=data.cb20;
+	} else if (tempno == 6) {
+		fplx=data.c3c8;
+		hwxxs=data.a574;  
+		fpxxs=data.da20;
+	} else if (tempno == 7) {
+		fplx=data.dc02;
+		hwxxs=data.cc66;  
+		fpxxs=data.ddbb;
+	} else if (tempno == 8) {
+		fplx=data.b3dd;
+		hwxxs=data.c2b9;  
+		fpxxs=data.e72d;
+	} else if (tempno == 9) {
+		fplx=data.f16a;
+		hwxxs=data.ceb5;  
+		fpxxs=data.a83e;
+	}
+
+	  var rules = rule.split('☺');
+	  var splitstr = rules[0];
+  fpxxs = fpxxs.replaceAll(splitstr, "≡");
+  hwxxs = hwxxs.replaceAll(splitstr, "≡");
+  splitstr = "≡";
+  var sort = data.sort;
+  var sortarray = sort.split("_");  
+  var tmpfpxx = fpxxs.split("≡");   
+  var cysj = tmpfpxx[tmpfpxx.length - 1] ;     
+  var tmpfp = new Array(tmpfpxx.length - 4);   
+  for (i = 3; i < tmpfpxx.length - 1; i++) {
+	  tmpfp[i - 3] = tmpfpxx[i];
+  }
+  
+	var newfpxx = new Array(tmpfpxx.length - 4);   
+	for (i = 0; i < tmpfpxx.length - 4; i++) {
+		newfpxx[i] = tmpfp[parseInt(sortarray[i])];
+	}
+	var newfpxxstr = tmpfpxx[0] + "≡" + tmpfpxx[1] + "≡" + tmpfpxx[2] + "≡";
+	for (i = 0; i < newfpxx.length; i++) {
+		newfpxxstr = newfpxxstr + newfpxx[i] + "≡";
+	}
+	fpxxs = newfpxxstr + cysj;   
+	var cycs=0;
+
+  $(document).ready(function(){
+	  if (browser == "edge") {
+		  $("#dialogclose").show();
+		  document.getElementById('dialogclose').addEventListener('click', function(e) {
+			  $("#cover").hide();
+		  });
+	  } else {
+		  $("#dialogclose").hide();
+	  }
+
+	  if (browser == "ie8") {  //IE8只支持attachEvent方法，而且是onclick事件
+		  document.getElementById('mxclose').attachEvent('onclick', function(e) {
+			$("#hwmxqd").hide();
+		  });
+		  document.getElementById('printfpmx').attachEvent('onclick', function(e) {
+			$("#printfpmx").hide();
+			$("#mxclose").hide();
+			$("#hwmxqd").printArea(); 
+			$("#printfpmx").show();
+			$("#mxclose").show();
+		  }); 
+	  } else {
+		document.getElementById('mxclose').addEventListener('click', function(e) {
+			$("#hwmxqd").hide();
+		});
+		document.getElementById('printfpmx').addEventListener('click', function(e) {
+			$("#printfpmx").hide();
+			$("#mxclose").hide();
+			$("#hwmxqd").printArea(); 
+			$("#printfpmx").show();
+			$("#mxclose").show();
+		}); 
+	  }
+        if(fpxxs!=null&&fpxxs!=""){
+          var fpxx=fpxxs.split("≡"); 
+          cycs=Number(fpxx[3])+1;
+          $('#fpdm_zp').text(fpxx[0]);
+		  $('#fpmx_fpdminfo').text("所属增值税专用发票代码：");
+		  $('#fpmx_fpdm').text(fpxx[0]);
+          $('#fphm_zp').text(fpxx[1]);
+		  $('#fpmx_fphm').text(fpxx[1]);
+          $('#fpcc_zp').text(fpxx[2]+"增值税专用发票");
+          $('#cycs').text("查验次数：第"+cycs+"次");
+          $('#cysj').text("查验时间："+fpxx[21]);
+          $('#kprq_zp').text(FormatDate(fpxx[4], rules[3]));
+		  $('#fpmx_kprq').text(FormatDate(fpxx[4], rules[3]));
+
+          if(fpxx[17].trim().length!=0){
+            $('#jqxx_zp').show();
+            $('#jqbh_zp').text(fpxx[17]);
+          } 
+
+          $('#gfmc_zp').text(fpxx[5]);
+		  $('#fpmx_gfmc').text(fpxx[5]);
+          $('#gfsbh_zp').text(fpxx[6]);
+          $('#gfdzdh_zp').text(fpxx[7]);
+          $('#gfyhzh_zp').text(fpxx[8]);
+
+          $('#xfmc_zp').text(fpxx[9]);
+		  $('#fpmx_xfmc').text(fpxx[9]);
+          $('#xfsbh_zp').text(FormatSBH(fpxx[10], rules[1]));
+          $('#xfdzdh_zp').text(fpxx[11]);
+          $('#xfyhzh_zp').text(fpxx[12]);
+
+          $('#je_zp').text('￥'+GetJeToDot(getje(fpxx[13], rules[2])));
+          $('#se_zp').text('￥'+GetJeToDot(getje(fpxx[14], rules[2])));
+          $('#jshjxx_zp').text('￥'+GetJeToDot(getje(fpxx[15], rules[2])));
+          $('#jshjdx_zp').html('&otimes;'+NoToChinese(GetJeToDot(getje(fpxx[15], rules[2])),"01"));
+          $('#bz_zp').html("<p class=\"warp\">" + data.jmbz.replace(/\r\n/g, "<br/>").replace(/\n/g, "<br/>") + "</p>");
+          $('#jym_zp').text(fpxx[19]);
+          
+          var flag=fpxx[20];
+          if(flag=='Y'){
+              $('#icon_zf').show();
+          }    
+
+
+          if(hwxxs!=""){
+            var html=GetHwxxHtml(hwxxs, rules[4], rules[2]);
+            $("#tab_head_zp").after(html);
+          }          
+        }
+        //$('#tabPage-zzszyfp').show();
+
+      var tableHeight=$('#tabPage2').height();
+      $('#bg_div').height(tableHeight+150);
+  });
+
+  $("button#printfp").click(function(){ 
+    $("button#printfp").hide();
+	$("button#closebt").hide();
+	if ( $("button#showmx").length > 0 ) { 
+		$("button#showmx").hide();
+	}    
+    $("div#print_area").printArea(); 
+	if (browser == "ie8" ) {
+		$("button#printfp").show();
+	} else {
+		$("button#closebt").show();
+		$("button#printfp").show();
+	}
+	if ( $("button#showmx").length > 0 ) { 
+		$("button#showmx").show();
+	}
+  }); 
+
+  $("button#closebt").click(function(){
+    if (browser == "edge" || browser == "ie8" || browser == "firefox") {
+		$("#cover").hide();
+		$("#floatwin").hide();
+	} else {
+		parent.arw();
+		parent.document.getElementById("dialog-body").contentWindow.document.body.innerText = "";
+		parent.dalog.close();
+		$("#cover").hide();
+	}
+  }); 
+
+function popWin(a) {
+    function n() {
+        var a = k ? k: document.body,
+        b = a.scrollHeight > a.clientHeight ? a.scrollHeight: a.clientHeight,
+        c = a.scrollWidth > a.clientWidth ? a.scrollWidth: a.clientWidth;
+    }
+    var d, e, b = 9e3,
+    c = !1,
+    f = $("#" + a),
+    g = f.width(),
+    h = f.height(),
+    j = f.find(".close"),
+    k = document.documentElement,
+    l = ($(document).width() - f.width()) / 2;
+	if (h > 700) {
+		h = 700;
+	}
+    m = (k.clientHeight - h) / 2;
+	if ($(document).width() > 1100) {
+		l = (1100 - f.width()) / 2;
+	}
+	if (k.clientHeight > 600) {
+		m = (600 - h) / 2;
+	}
+	if (m < 0) {
+		m = 0 - m;
+	}
+    $("#hwmxqd").css({
+        "left": l,
+        "top": m,
+        "display": "block",
+        "z-index": b - -1
+    })
+}
+
+</script>
+<div id="hwmxqd" style="padding:10px;position:absolute;width:1000px;border:1px solid #ccc;background:#fff;  display:none;">
+
+<div id="print_areamx" >
+
+
+<h1 id="fpcc_zp" style="color:#574B9D;padding:5px 0px 15px 0px; text-align:center;"><strong>销 售 货 物 或 提 供 应 税 劳 务 清 单</strong></h1>
+<table border="0" cellpadding="0" cellspacing="0" style="width:100%" >
+<tr height="30">                  
+  <td class="align_left" colspan="3">购买方名称：<span class="content_td_blue" id="fpmx_gfmc"></span></td>
+</tr>
+<tr height="30">                  
+  <td class="align_left" colspan="3">销售方名称：<span class="content_td_blue" id="fpmx_xfmc"></span></td>
+</tr>
+<tr height="30">                  
+  <td class="align_left"><span id="fpmx_fpdminfo">所属增值税普通发票代码：</span><span class="content_td_blue" id="fpmx_fpdm"></span></td>
+  <td class="align_left">号码：<span class="content_td_blue" id="fpmx_fphm"></span></td>
+  <td class="align_right">共1页 第1页</td>
+  <td> &nbsp;</td>
+</tr>
+</table>
+<table style="width:100%" border="0" cellspacing="0" cellpadding="0" class="fppy_table">
+	<tr id="tab_head_mx">
+	  <td width="60"> 序号</td>
+	  <td width="240">货物（劳务）名称</td>
+	  <td width="100">规格型号</td>
+	  <td width="60"> 单位</td>
+	  <td width="100">数量</td>
+	  <td width="100">单价</td>
+	  <td width="100">金额</td>
+	  <td width="40"> 税率</td>
+	  <td width="100">税额</td>
+	</tr>
+    <tr>
+	  <td width="60"  class="borderHaveTop"> 小计</td>
+	  <td width="240" class="borderHaveTop align_left"></td>
+	  <td width="100" class="borderHaveTop"></td>
+	  <td width="60"  class="borderHaveTop"></td>
+	  <td width="100" class="borderHaveTop align_right"></td>
+	  <td width="100" class="borderHaveTop align_right"></td>
+	  <td width="100" class="borderHaveTop align_right content_td_blue" id="xiaoji1"></td>
+	  <td width="40"  class="borderHaveTop"></td>
+	  <td width="100" class="borderHaveTop align_right content_td_blue" id="xiaoji2"></td>
+	</tr>
+    <tr>
+	  <td width="60"  class="borderBottomTopNo"> 总计</td>
+	  <td width="240" class="borderBottomTopNo align_left"></td>
+	  <td width="100" class="borderBottomTopNo"></td>
+	  <td width="60"  class="borderBottomTopNo"></td>
+	  <td width="100" class="borderBottomTopNo align_right"></td>
+	  <td width="100" class="borderBottomTopNo align_right"></td>
+	  <td width="100" class="borderBottomTopNo align_right content_td_blue" id="zongji1"></td>
+	  <td width="40"  class="borderBottomTopNo"></td>
+	  <td width="100" class="borderBottomTopNo align_right content_td_blue" id="zongji2"></td>
+	</tr>
+    <tr>
+	  <td class="borderTop">备注</td>
+	  <td class="borderTop align_left content_td_blue" colspan="8"></td>
+	</tr>
+</table>
+<br />
+<table border="0" cellpadding="0" cellspacing="0" style="width:100%" >
+<tr height="30">                  
+  <td class="align_left">销售方（章）：</td>
+  <td class="align_right">填开日期：<span class="content_td_blue" id="fpmx_kprq"></span></td>
+  <td>&nbsp;</td>
+</tr>
+</table>
+</div>
+	<button id="printfpmx" class="white_button" style="position:relative;" onmousemove="this.className='green_button';" onmouseout="this.className='white_button';">打印</button><button id="mxclose" class="white_button" style="position:relative!important;z-index:100" onmousemove="this.className='green_button';" onmouseout="this.className='white_button';">关闭</button>
+</div>
+</body>
+</html>

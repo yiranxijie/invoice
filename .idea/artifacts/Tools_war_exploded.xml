@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Tools:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Tools_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Tools/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Tools" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Struts 2-2.3.20.1" />
+          <element id="library" level="project" name="struts2-json-plugin-2.3.20.1" />
+          <element id="library" level="project" name="json-lib-2.3-jdk15" />
+          <element id="library" level="project" name="apache-commons-lang" />
+          <element id="library" level="project" name="commons-beanutils-core-1.7.0" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

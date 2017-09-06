@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="test" extends="json-default">
+        <action name="uploadimg" class="Tools.Controller.UploadImgAction" method="execute">
+            <result type="json" name="success">
+                <param name="contentType">
+                    text/html
+                </param>
+                <param name="root">message</param>
+            </result>
+            <result type="json" name="error">
+                <param name="contentType">
+                    text/html
+                </param>
+                <param name="root">message</param>
+            </result>
+        </action>
+    </package>
+</struts>

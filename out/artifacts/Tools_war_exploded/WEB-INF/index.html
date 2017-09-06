@@ -1,0 +1,275 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>发票识别 WebUploader</title>
+
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="../css/webuploader.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+
+<style>
+.demo{min-width:360px;margin:30px auto;padding:10px 20px}
+.demo h3{line-height:40px; font-weight: bold;}
+.file-item{float: left; position: relative; width: 110px;height: 110px; margin: 0 20px 20px 0; padding: 4px;}
+.file-item .info{overflow: hidden;}
+.uploader-list{width: 100%; overflow: hidden;}
+#upbtn{position: absolute; top: 20px; left: 458px; width: 168px; height: 44px; overflow: hidden; bottom: auto; right: auto;}
+#upbtn input{
+	display: block;
+    width: 258px;
+    height: 100%;
+    cursor: pointer;
+    margin-left: -90px;
+    opacity: 0;}
+	
+.thumb{
+	position: absolute;
+    display: block;
+    margin-left: 485px;
+    width: 112px;
+    height: 110px;
+    margin-top: -30px;
+    cursor: pointer;
+	opacity: 0;
+}
+
+#log_window {
+	width:960px;
+    background-color:#666;    
+    z-index:3;
+    display:none;
+	margin-top: 100px;
+    margin-left: 200px;
+}
+#log_window a{
+	color: #000;
+    position: absolute;
+    margin-top: -580px;
+    margin-left: 430px;
+}
+</style>
+
+<script language="javascript">
+  document.write("<l" + "ink rel='stylesheet' type='text/css' href='../css/common.css' />");
+</script>
+</head>
+<body>
+<div class="container">
+
+	<div class="row main">
+		<div class="demo">
+            <div class="logo vt-home">
+				<img src="../imgs/logo.png" height="80" class="vt-home">
+				<span class="library">四川大学发票识别平台</span>
+			</div>
+			<p class="about vt-home">支持增值税专用发票、增值税普通发票（含电子普通发票、卷式发票）、机动车销售统一发票、货物运输业增值税专用发票在线查验</p>
+        </div>
+        <div class="demo">
+            <div id="uploader">
+                <div class="queueList">
+                    <div id="dndArea" class="placeholder">
+						<input type="file" class="thumb" name="file"  onchange="uploadImage(this)" multiple="multiple">
+						<img alt="Click to select a file" class="vt-upload-form" src="../imgs/thumbprint.png">
+						
+						<div id="filePicker" class="webuploader-container">
+							<div class="webuploader-pick">点击选择图片</div>
+							<div id="upbtn">
+								<input type="file" name="file" onchange="uploadImage(this)" multiple="multiple">			
+							</div>
+						</div>
+                    </div>
+                </div>
+                <div class="statusBar" style="display:none;">
+                    <div class="progress">
+                        <span class="text">0%</span>
+                        <span class="percentage"></span>
+                    </div><div class="info"></div>
+                    <div class="btns">
+                        <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+	</div>
+
+	<div id="log_window">
+		<!--content begin-->
+<div id="content" class="clearfix">
+<a href="#" id="dialogclose">&times;</a>
+  
+  <div id="cms_r">
+    <div class="title">发票查验明细</div>
+    <div class="cms_r_main">
+      <div class="chayan_div">
+      <div id="print_area" class="printdiv" >
+        <table  border="1" class="comm_table2" width="100%" >
+          <tr>
+            <td colspan="4" style="background-color:#2498ef;color:#fff; "><span id="cycs">查验次数：第1次</span>
+            <span style="padding-left:50px;" id="cysj">查验时间：2015-07-08 09:37:22</span>
+            <span style="float:right">
+            <button id="printfp" class="white_button" style="position:relative!important;z-index:100" onmousemove="this.className='green_button';" onmouseout="this.className='white_button';">打印</button>
+			<button id="closebt" class="white_button" style="position:relative!important;z-index:100" onmousemove="this.className='green_button';" onmouseout="this.className='white_button';" onclick="scanAllUser()">关闭</button></span>
+            </td>
+          </tr>
+        </table>
+        <!--原始信息 <a href="#" id="dialog-close" style="position: absolute; top: 0; right: 4px; font-size: 20px; color: #000; text-decoration: none; outline: none;">&times;</a>-->
+      
+        
+          <div id="tabPage2" >
+            <div id="tabPage-zzszyfp">
+              <h1 id="fpcc_zp" style="color:#574B9D;padding:5px 0px 5px 0px; text-align:center;"><strong>四川增值税专用发票</strong></h1>
+              <table border="0" cellpadding="0" cellspacing="0" style="width:100%" >
+                <tr height="30">                 
+                  <td class="align_left">发票代码：<span class="content_td_blue" id="fpdm_zp"></span></td>
+                  <td>&nbsp;</td>
+                  <td class="align_left">发票号码：<span class="content_td_blue" id="fphm_zp"></span></td>
+                  <td>&nbsp;</td>
+                  <td class="align_left">开票日期：<span class="content_td_blue" id="kprq_zp"></span></td>
+                  <td>&nbsp;</td>
+                  <td class="align_left">校验码：<span class="content_td_blue" id="jym_zp"></span></td>
+                  <td>&nbsp;</td>                
+                  <td class="align_left" id="jqxx_zp" style="display:none">机器编号：<span class="content_td_blue" id="jqbh_zp"></span></td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table>
+              <table style="width:100%" border="0" cellspacing="0" cellpadding="0" class="fppy_table">
+              <tr>
+                <td rowspan="4" class="align_center" width="20"><p>购</p>
+                <p>买</p>
+                <p>方</p></td>
+                <td class="align_left borderNo" width="105">名称：</td>
+                <td nowrap class="align_left borderNo bgcolorWhite"><span class="content_td_blue" id="gfmc_zp"></span></td>
+
+                <td rowspan="4" class="align_center" width="20">
+                <p>密</p>
+                <p>码</p>
+                <p>区</p></td>
+                <td id="password_zp" rowspan="4" nowrap class="align_left " width="350">&nbsp;</td> 
+                </tr>
+                <tr >
+                  <td class="align_left borderNo">纳税人识别号：</td>
+                  <td  nowrap class="align_left borderNo"><span class="content_td_blue" id="gfsbh_zp"></span></td>
+                </tr>
+                <tr>
+                  <td class="align_left borderNo" valign="top">地址、电话：</td>
+                  <td  class="align_left borderNo" valign="top"><span class="content_td_blue" id="gfdzdh_zp"> </span></td>
+                </tr>
+                <tr>
+                  <td class="align_left borderNo" valign="top">开户行及账号：</td>
+                  <td  class="align_left borderNo" valign="top"><span class="content_td_blue" id="gfyhzh_zp"></span></td>
+
+                </tr>
+                
+                <!--表头-->
+                <tr>
+                  <td colspan="5" ><table cellspacing="0" cellpadding="0" style="width:100%;" class="fppy_table_box">
+                    <tr id="tab_head_zp">
+                      <td class="align_center borderRight" width="30%">货物或应税劳务名称</td>
+                      <td class="align_center borderRight" width="10%">规格型号</td>
+                      <td class="align_center borderRight" width="5%">单位</td>
+                      <td class="align_center borderRight" width="10%">数量</td>
+                      <td class="align_center borderRight" width="10%">单价</td>
+                      <td class="align_center borderRight" width="15%">金额</td>
+                      <td class="align_center borderRight" width="5%">税率</td>
+                      <td class="align_center" width="15%">税额</td>
+                    </tr>
+                    <tr >
+                      <td class="align_center borderRight">合计</td>
+                      <td class="align_center borderRight">&nbsp;</td>
+                      <td class="align_center borderRight">&nbsp;</td>
+                      <td class="align_center borderRight">&nbsp;</td>
+                      <td class="align_center borderRight">&nbsp;</td>
+                      <td class="align_right borderRight"><span class="content_td_blue" id="je_zp"></span></td>
+                      <td class="align_center borderRight">&nbsp;</td>
+                      <td class="align_right"><span class="content_td_blue" id="se_zp"></span></td>
+                    </tr>
+                    <tr >
+                      <td class="align_center borderRight borderTop" >价税合计（大写）</td>
+                      <td colspan="4" class="align_left borderTop" ><span class="content_td_blue" id="jshjdx_zp"></span></td>
+					  <td colspan="3" class="align_left borderTop" ><span style="padding:0 20px;">（小写）</span><span class="content_td_blue" id="jshjxx_zp"></span></td>
+                    </tr>
+                  </table></td>
+                </tr>
+                <!--表头结束-->
+                <tr>
+                  <td rowspan="4" class="align_center"><p>销</p>
+                  <p>售</p>
+                  <p>方</p></td>
+                  <td class="align_left borderNo">名称：</td>
+                  <td class="align_left borderNo"><span class="content_td_blue" id="xfmc_zp"></span></td>
+                  <td rowspan="4" class="align_center" width="20" ><p>备</p>
+                  <p>注</p></td>
+                  <td rowspan="4" class="align_left content_td_blue" width="350" id="bz_zp" valign="top">&nbsp;</td>
+                </tr>
+                <tr >
+                  <td class="align_left borderNo">纳税人识别号：</td>
+                  <td class="align_left borderNo"><span class="content_td_blue" id="xfsbh_zp"></span></td>
+                </tr>
+                <tr>
+                  <td class="align_left borderNo">地址、电话：</td>
+                  <td class="align_left borderNo"><span class="content_td_blue" id="xfdzdh_zp"></span></td>
+                </tr>
+                <tr>
+                  <td class="align_left borderNo">开户行及账号：</td>
+                  <td class="align_left borderNo"><span class="content_td_blue" id="xfyhzh_zp"></span></td>
+                </tr>
+              </table>
+              
+            </div>
+          </div>
+      <!--原始信息  end-->
+        <div id="icon_zf" style="position:absolute;top:0px;left:0px;display:none;"></div>
+      </div>
+
+         <div style="padding:30px 35px 0px 0px; color:#da534f; font-size:14px; line-height:25px;">
+          <strong>特别提示：</strong>
+            <br />&raquo;&nbsp;&nbsp;本平台仅提供所查询发票票面信息的查验结果。
+            <br />&raquo;&nbsp;&nbsp;若发现发票查验结果与实际交易不符，任何单位或个人有权拒收并向当地税务机关举报。
+        </div>
+        
+      </div>
+      
+      <!-- <div class="comm_btn_div clearfix"> <button class="blue_button" onmousemove="this.className='green_button';" onmouseout="this.className='blue_button';" onclick="close_window()">返回</button></div> -->
+      
+    </div>
+  </div>
+
+</div>
+<!--content end-->
+<a href="javascript:cancel_shield()">关闭</a>
+	</div>
+	
+</div>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript">
+
+function uploadImage(imgFile) {
+	var filextension=imgFile.value.substring(imgFile.value.lastIndexOf("\\")+1,imgFile.value.length);
+	if( "0.png" == filextension ){
+		alert("识别失败！请尝试重新上传。。。");
+		window.location.reload();
+	}else{
+		var l = document.getElementById("log_window");
+		l.style.display = "block";
+		$('.main').css('display','none');
+		$('body').css('background-color','#666')
+	}
+}
+
+function cancel_shield(){
+    var l = document.getElementById("log_window");
+    l.style.display = "none";
+	window.location.reload();
+}
+
+</script>
+</body>
+</html>
